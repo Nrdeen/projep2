@@ -1,0 +1,340 @@
+/* SouqAlGhanam AI assistant — premium dark green + gold.
+   Fully scoped under .souq-ai. Uses logical properties so Arabic RTL / English LTR need no overrides.
+   Override any --sai-* token from the host to adapt to the site's design system. */
+
+.souq-ai {
+  --sai-font: inherit;
+  --sai-z: 2147483000;
+  --sai-radius: 18px;
+  --sai-green-950: #06241a;
+  --sai-green-900: #0a3325;
+  --sai-green-800: #0f4733;
+  --sai-green-700: #165a41;
+  --sai-gold: #c9a24b;
+  --sai-gold-bright: #e2bf68;
+  --sai-gold-soft: #f6e7b8;
+  font-family: var(--sai-font);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--sai-text);
+  -webkit-text-size-adjust: 100%;
+}
+.souq-ai *, .souq-ai *::before, .souq-ai *::after { box-sizing: border-box; }
+.souq-ai button, .souq-ai textarea, .souq-ai input { font: inherit; color: inherit; }
+.souq-ai [hidden] { display: none !important; }
+
+/* ---------- themes ---------- */
+.souq-ai[data-theme='light'] {
+  color-scheme: light;
+  --sai-bg: #fbf8f0;
+  --sai-surface: #ffffff;
+  --sai-surface-2: #f3eedf;
+  --sai-text: #12261d;
+  --sai-muted: #5b6a61;
+  --sai-border: #e3dbc4;
+  --sai-accent: var(--sai-green-800);
+  --sai-accent-text: #ffffff;
+  --sai-gold-text: #84631a;
+  --sai-user-bg: var(--sai-green-800);
+  --sai-user-text: #fdf8e8;
+  --sai-ai-bg: #ffffff;
+  --sai-focus: #a98531;
+  --sai-danger: #a32d2d;
+  --sai-danger-bg: #fbeaea;
+  --sai-shadow: 0 18px 50px rgba(6, 36, 26, 0.28), 0 2px 8px rgba(6, 36, 26, 0.12);
+}
+.souq-ai[data-theme='dark'] {
+  color-scheme: dark;
+  --sai-bg: #07261c;
+  --sai-surface: #0d3326;
+  --sai-surface-2: #12402f;
+  --sai-text: #f3eee0;
+  --sai-muted: #a7b9ae;
+  --sai-border: #1f5a43;
+  --sai-accent: var(--sai-gold);
+  --sai-accent-text: #1a1405;
+  --sai-gold-text: #e2bf68;
+  --sai-user-bg: var(--sai-green-700);
+  --sai-user-text: #fbf5e1;
+  --sai-ai-bg: #0d3326;
+  --sai-focus: #e2bf68;
+  --sai-danger: #ff9b9b;
+  --sai-danger-bg: #3a1a1a;
+  --sai-shadow: 0 18px 50px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(201, 162, 75, 0.18);
+}
+
+/* ---------- launcher ---------- */
+.souq-ai .sai-launcher {
+  position: fixed;
+  inset-block-end: 20px;
+  inset-inline-end: 20px;
+  z-index: var(--sai-z);
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 2px solid var(--sai-gold);
+  background: linear-gradient(145deg, var(--sai-green-800), var(--sai-green-950));
+  color: var(--sai-gold-bright);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: var(--sai-shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.souq-ai .sai-launcher:hover { transform: translateY(-2px) scale(1.04); }
+.souq-ai .sai-launcher-icon { font-size: 28px; display: grid; place-items: center; }
+.souq-ai .sai-launcher-icon > * { max-width: 30px; max-height: 30px; }
+
+/* ---------- panel ---------- */
+.souq-ai .sai-panel {
+  position: fixed;
+  inset-block-end: 16px;
+  inset-inline-end: 16px;
+  z-index: var(--sai-z);
+  width: min(480px, calc(100vw - 32px));
+  height: min(700px, calc(100dvh - 32px));
+  display: flex;
+  flex-direction: column;
+  background: var(--sai-bg);
+  border: 1px solid var(--sai-border);
+  border-radius: var(--sai-radius);
+  box-shadow: var(--sai-shadow);
+  overflow: hidden;
+  animation: sai-pop 0.18s ease-out;
+}
+.souq-ai[data-mode='embedded'] .sai-panel {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  box-shadow: none;
+  animation: none;
+}
+
+/* ---------- header ---------- */
+.souq-ai .sai-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 10px 10px 14px;
+  padding-inline: 14px 10px;
+  background: linear-gradient(135deg, var(--sai-green-800), var(--sai-green-950));
+  color: #fdf8e8;
+  border-block-end: 2px solid var(--sai-gold);
+  flex: none;
+}
+.souq-ai .sai-header-icon {
+  width: 34px; height: 34px; flex: none;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  border: 1.5px solid var(--sai-gold);
+  color: var(--sai-gold-bright);
+  font-size: 18px;
+  overflow: hidden;
+}
+.souq-ai .sai-header-icon > * { max-width: 20px; max-height: 20px; }
+.souq-ai .sai-header-text { display: flex; flex-direction: column; min-width: 0; margin-inline-start: 4px; }
+.souq-ai .sai-header-text strong { font-size: 15px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.souq-ai .sai-header-text small { color: var(--sai-gold-soft); opacity: 0.85; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.souq-ai .sai-spacer { flex: 1; }
+.souq-ai .sai-hbtn {
+  height: 34px; min-width: 34px; padding: 0 8px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+  border: 0; border-radius: 10px; cursor: pointer;
+  background: transparent; color: #fdf8e8; font-size: 18px;
+}
+.souq-ai .sai-hbtn span { font-size: 12.5px; }
+.souq-ai .sai-hbtn:hover, .souq-ai .sai-hbtn[aria-pressed='true'] { background: rgba(226, 191, 104, 0.18); color: var(--sai-gold-bright); }
+
+/* ---------- body ---------- */
+.souq-ai .sai-body { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; background: var(--sai-bg); }
+.souq-ai .sai-empty { margin: auto; padding: 24px; color: var(--sai-muted); text-align: center; display: flex; gap: 8px; align-items: center; }
+
+/* ---------- welcome (compact, 2x2) ---------- */
+.souq-ai .sai-welcome {
+  flex: 1; min-height: 0;
+  display: flex; flex-direction: column; justify-content: center; gap: 14px;
+  padding: 14px 16px;
+  overflow-y: auto;
+}
+.souq-ai .sai-welcome-head { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.souq-ai .sai-welcome-icon {
+  width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%;
+  background: linear-gradient(145deg, var(--sai-green-800), var(--sai-green-950));
+  border: 1.5px solid var(--sai-gold); color: var(--sai-gold-bright); font-size: 22px; margin-block-end: 4px; overflow: hidden;
+}
+.souq-ai .sai-welcome-icon > * { max-width: 26px; max-height: 26px; }
+.souq-ai .sai-welcome h2 { margin: 0; font-size: 19px; line-height: 1.3; color: var(--sai-text); }
+.souq-ai .sai-welcome p { margin: 0; color: var(--sai-muted); font-size: 13.5px; }
+.souq-ai .sai-qa-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.souq-ai .sai-qa {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 3px;
+  min-height: 96px; padding: 12px;
+  text-align: start; cursor: pointer;
+  background: var(--sai-surface); border: 1px solid var(--sai-border); border-radius: 14px;
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.souq-ai .sai-qa:hover:not(:disabled) { border-color: var(--sai-gold); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(6, 36, 26, 0.12); }
+.souq-ai .sai-qa:disabled { opacity: 0.55; cursor: not-allowed; }
+.souq-ai .sai-qa-ico {
+  width: 30px; height: 30px; display: grid; place-items: center; border-radius: 9px; font-size: 17px; margin-block-end: 3px;
+  background: var(--sai-surface-2); color: var(--sai-gold-text);
+}
+.souq-ai .sai-qa strong { font-size: 13.5px; line-height: 1.3; color: var(--sai-text); }
+.souq-ai .sai-qa small { font-size: 12px; line-height: 1.35; color: var(--sai-muted); }
+
+/* ---------- messages ---------- */
+.souq-ai .sai-messages { flex: 1; min-height: 0; overflow-y: auto; padding: 14px 14px 6px; display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth; overscroll-behavior: contain; }
+.souq-ai .sai-row { display: flex; flex-direction: column; gap: 8px; max-width: 100%; }
+.souq-ai .sai-row-user { align-items: flex-end; }
+.souq-ai .sai-row-ai { align-items: flex-start; }
+.souq-ai .sai-bubble { max-width: 92%; padding: 9px 13px; border-radius: 16px; overflow-wrap: anywhere; }
+.souq-ai .sai-bubble p { margin: 0; white-space: pre-wrap; }
+.souq-ai .sai-bubble p + p, .souq-ai .sai-bubble ul + p, .souq-ai .sai-bubble ol + p, .souq-ai .sai-bubble p + ul, .souq-ai .sai-bubble p + ol { margin-block-start: 8px; }
+.souq-ai .sai-bubble ul, .souq-ai .sai-bubble ol { margin: 6px 0 0; padding-inline-start: 22px; }
+.souq-ai .sai-bubble-user { background: var(--sai-user-bg); color: var(--sai-user-text); border-end-end-radius: 5px; }
+.souq-ai .sai-bubble-ai { background: var(--sai-ai-bg); border: 1px solid var(--sai-border); border-end-start-radius: 5px; }
+.souq-ai .sai-interrupted { display: block; margin-block-start: 6px; font-size: 12px; color: var(--sai-muted); }
+.souq-ai .sai-typing { display: inline-flex; gap: 4px; padding: 4px 2px; }
+.souq-ai .sai-typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--sai-gold); animation: sai-bounce 1s infinite ease-in-out; }
+.souq-ai .sai-typing i:nth-child(2) { animation-delay: 0.15s; }
+.souq-ai .sai-typing i:nth-child(3) { animation-delay: 0.3s; }
+
+.souq-ai .sai-actions { display: flex; gap: 2px; margin-inline-start: 4px; }
+.souq-ai .sai-act {
+  width: 30px; height: 30px; display: grid; place-items: center; border: 0; border-radius: 8px;
+  background: transparent; color: var(--sai-muted); font-size: 16px; cursor: pointer;
+}
+.souq-ai .sai-act:hover:not(:disabled) { background: var(--sai-surface-2); color: var(--sai-text); }
+.souq-ai .sai-act[aria-pressed='true'] { color: var(--sai-gold-text); background: var(--sai-surface-2); }
+.souq-ai .sai-act:disabled { opacity: 0.4; cursor: default; }
+
+/* attachment chips (tray + sent messages) */
+.souq-ai .sai-msg-atts, .souq-ai .sai-tray { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.souq-ai .sai-msg-atts { margin-block-end: 6px; }
+.souq-ai .sai-att-chip {
+  position: relative; display: inline-flex; align-items: center; gap: 6px; max-width: 100%;
+  padding: 4px 6px; border-radius: 10px; font-size: 12px;
+  background: var(--sai-surface-2); color: var(--sai-text); border: 1px solid var(--sai-border);
+}
+.souq-ai .sai-bubble-user .sai-att-chip { background: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.25); color: inherit; }
+.souq-ai .sai-att-chip img { width: 34px; height: 34px; object-fit: cover; border-radius: 7px; flex: none; }
+.souq-ai .sai-att-chip > svg { font-size: 22px; color: var(--sai-gold-text); flex: none; }
+.souq-ai .sai-att-chip span { max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.souq-ai .sai-att-chip small { opacity: 0.7; }
+.souq-ai .sai-chip-x { width: 22px; height: 22px; border: 0; border-radius: 50%; display: grid; place-items: center; cursor: pointer; background: var(--sai-border); color: var(--sai-text); font-size: 12px; }
+.souq-ai .sai-chip-x:hover { background: var(--sai-danger-bg); color: var(--sai-danger); }
+
+/* listing cards + stats */
+.souq-ai .sai-cards { display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 92%; }
+.souq-ai .sai-card { display: flex; gap: 10px; padding: 8px; background: var(--sai-surface); border: 1px solid var(--sai-border); border-radius: 14px; }
+.souq-ai .sai-card-media { width: 76px; height: 76px; flex: none; border-radius: 10px; overflow: hidden; background: var(--sai-surface-2); }
+.souq-ai .sai-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.souq-ai .sai-card-ph { display: block; width: 100%; height: 100%; background: repeating-linear-gradient(45deg, var(--sai-surface-2), var(--sai-surface-2) 8px, var(--sai-border) 8px, var(--sai-border) 9px); }
+.souq-ai .sai-card-body { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 1px; }
+.souq-ai .sai-card-title { margin: 0; font-size: 14px; line-height: 1.35; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.souq-ai .sai-card-meta { margin: 0; font-size: 12px; color: var(--sai-muted); }
+.souq-ai .sai-card-foot { margin-block-start: auto; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.souq-ai .sai-card-price { color: var(--sai-gold-text); font-size: 14px; }
+.souq-ai .sai-card-link { display: inline-flex; align-items: center; gap: 4px; font-size: 12.5px; font-weight: 600; color: var(--sai-text); text-decoration: none; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--sai-gold); }
+.souq-ai .sai-card-link:hover { background: var(--sai-gold); color: #1a1405; }
+.souq-ai .sai-stats { width: 100%; max-width: 92%; padding: 10px 12px; background: var(--sai-surface); border: 1px solid var(--sai-border); border-radius: 14px; border-inline-start: 4px solid var(--sai-gold); }
+.souq-ai .sai-stats header { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; font-size: 12.5px; }
+.souq-ai .sai-stats header span { color: var(--sai-muted); }
+.souq-ai .sai-stats dl { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 8px 0 0; }
+.souq-ai .sai-stats dt { font-size: 11px; color: var(--sai-muted); }
+.souq-ai .sai-stats dd { margin: 0; font-size: 13px; font-weight: 700; }
+
+/* ---------- footer / composer ---------- */
+.souq-ai .sai-footer { flex: none; padding: 8px 12px 8px; background: var(--sai-bg); border-block-start: 1px solid var(--sai-border); display: flex; flex-direction: column; gap: 6px; }
+.souq-ai .sai-composer { display: flex; flex-direction: column; gap: 6px; }
+.souq-ai .sai-row-input {
+  display: flex; align-items: flex-end; gap: 4px; padding: 4px;
+  background: var(--sai-surface); border: 1px solid var(--sai-border); border-radius: 16px;
+}
+.souq-ai .sai-row-input:focus-within { border-color: var(--sai-gold); box-shadow: 0 0 0 3px rgba(201, 162, 75, 0.25); }
+.souq-ai .sai-textarea {
+  flex: 1; min-width: 0; resize: none; border: 0; outline: 0; background: transparent;
+  padding: 8px 6px; line-height: 1.45; max-height: 132px; min-height: 38px; color: var(--sai-text);
+}
+.souq-ai .sai-textarea::placeholder { color: var(--sai-muted); }
+.souq-ai .sai-icon-btn, .souq-ai .sai-send {
+  width: 38px; height: 38px; flex: none; display: grid; place-items: center; border: 0; border-radius: 12px; font-size: 19px; cursor: pointer;
+}
+.souq-ai .sai-icon-btn { background: transparent; color: var(--sai-muted); }
+.souq-ai .sai-icon-btn:hover:not(:disabled) { background: var(--sai-surface-2); color: var(--sai-text); }
+.souq-ai .sai-send { background: var(--sai-accent); color: var(--sai-accent-text); }
+.souq-ai .sai-send:hover:not(:disabled) { filter: brightness(1.1); }
+.souq-ai .sai-send:disabled, .souq-ai .sai-icon-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.souq-ai .sai-send.sai-stop { background: var(--sai-surface-2); color: var(--sai-text); border: 1px solid var(--sai-gold); }
+.souq-ai .sai-recbar { flex: 1; min-width: 0; min-height: 38px; display: flex; align-items: center; gap: 8px; padding-inline: 6px; overflow: hidden; }
+.souq-ai .sai-rec-dot { width: 10px; height: 10px; border-radius: 50%; background: #e5484d; animation: sai-pulse 1.1s infinite; flex: none; }
+.souq-ai .sai-rec-time { font-variant-numeric: tabular-nums; font-weight: 700; direction: ltr; }
+.souq-ai .sai-rec-interim { color: var(--sai-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; min-width: 0; }
+.souq-ai .sai-note { margin: 0; text-align: center; font-size: 11px; color: var(--sai-muted); line-height: 1.35; }
+.souq-ai .sai-inline-err { margin: 0; font-size: 12.5px; color: var(--sai-danger); }
+.souq-ai .sai-error {
+  display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 12px; font-size: 13px;
+  background: var(--sai-danger-bg); color: var(--sai-danger); border: 1px solid currentColor;
+}
+.souq-ai .sai-error span { flex: 1; min-width: 0; }
+.souq-ai .sai-error button { border: 1px solid currentColor; background: transparent; color: inherit; border-radius: 999px; padding: 2px 10px; cursor: pointer; font-size: 12.5px; }
+.souq-ai .sai-error .sai-error-x { border: 0; padding: 2px; display: grid; place-items: center; }
+
+/* ---------- history ---------- */
+.souq-ai .sai-history { position: absolute; inset: 0; z-index: 2; background: var(--sai-bg); display: flex; flex-direction: column; animation: sai-fade 0.15s ease-out; }
+.souq-ai .sai-history-head { display: flex; align-items: center; gap: 4px; padding: 8px 8px 8px 14px; padding-inline: 14px 8px; border-block-end: 1px solid var(--sai-border); }
+.souq-ai .sai-history-list { list-style: none; margin: 0; padding: 8px; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; }
+.souq-ai .sai-history-list li { display: flex; align-items: center; gap: 4px; border-radius: 12px; border: 1px solid transparent; }
+.souq-ai .sai-history-list li:hover { background: var(--sai-surface); }
+.souq-ai .sai-history-list li.is-active { background: var(--sai-surface); border-color: var(--sai-gold); }
+.souq-ai .sai-history-open { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; text-align: start; gap: 1px; padding: 8px 10px; background: transparent; border: 0; cursor: pointer; }
+.souq-ai .sai-history-title { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; }
+.souq-ai .sai-history-open small { color: var(--sai-muted); font-size: 11.5px; }
+.souq-ai .sai-danger { border: 1px solid var(--sai-danger); background: var(--sai-danger-bg); color: var(--sai-danger); border-radius: 999px; padding: 4px 10px; font-size: 12.5px; cursor: pointer; margin-inline-end: 6px; }
+
+/* ---------- misc ---------- */
+.souq-ai .sai-flip-rtl { }
+.souq-ai[dir='rtl'] .sai-flip-rtl { transform: scaleX(-1); }
+.souq-ai .sai-spin, .souq-ai .sai-spin-icon { animation: sai-rot 0.9s linear infinite; transform-origin: center; }
+.souq-ai :focus-visible { outline: 2px solid var(--sai-focus); outline-offset: 2px; border-radius: 8px; }
+.souq-ai .sai-textarea:focus-visible { outline: 0; }
+
+@keyframes sai-pop { from { opacity: 0; transform: translateY(10px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes sai-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sai-bounce { 0%, 80%, 100% { transform: translateY(0); opacity: 0.5; } 40% { transform: translateY(-4px); opacity: 1; } }
+@keyframes sai-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes sai-rot { to { transform: rotate(360deg); } }
+
+/* ---------- tablet ---------- */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .souq-ai .sai-panel { width: min(520px, calc(100vw - 32px)); height: min(720px, calc(100dvh - 32px)); }
+}
+
+/* ---------- short desktop screens: keep all 4 cards visible ---------- */
+@media (max-height: 640px) {
+  .souq-ai .sai-welcome { gap: 8px; padding-block: 8px; }
+  .souq-ai .sai-welcome-icon { display: none; }
+  .souq-ai .sai-qa { min-height: 84px; padding: 9px 10px; }
+  .souq-ai .sai-qa-ico { width: 26px; height: 26px; }
+}
+
+/* ---------- phone: full-screen sheet ---------- */
+@media (max-width: 640px) {
+  .souq-ai .sai-panel { inset: 0; width: 100vw; height: 100dvh; border-radius: 0; border: 0; }
+  .souq-ai .sai-launcher { inset-block-end: 14px; inset-inline-end: 14px; }
+  .souq-ai .sai-header { gap: 0; padding-inline: 10px 6px; }
+  .souq-ai .sai-hbtn { min-width: 32px; padding: 0 5px; }
+  .souq-ai .sai-hbtn-text span { display: none; }
+  .souq-ai .sai-header-text small { display: none; }
+  .souq-ai .sai-qa { min-height: 92px; padding: 10px; }
+  .souq-ai .sai-qa small { font-size: 11.5px; }
+  .souq-ai .sai-footer { padding-block-end: max(8px, env(safe-area-inset-bottom)); }
+  .souq-ai .sai-textarea { font-size: 16px; } /* avoids iOS zoom-on-focus */
+  .souq-ai .sai-bubble, .souq-ai .sai-cards, .souq-ai .sai-stats { max-width: 96%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .souq-ai *, .souq-ai *::before, .souq-ai *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition: none !important; scroll-behavior: auto !important; }
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "meta": {
+      "id": "aia_e51121b943e24308926edb7970ff9eee",
+      "kind": "image",
+      "mimeType": "image/png",
+      "name": "naimi-test.png",
+      "sizeBytes": 68,
+      "url": "/api/v1/ai/attachments/aia_e51121b943e24308926edb7970ff9eee",
+      "createdAt": "2026-11-25T09:00:03.276Z"
+    },
+    "ownerKey": "guest:df05c49bfdc548afa85d4f08f73ca279",
+    "filenameOnDisk": "aia_e51121b943e24308926edb7970ff9eee.png",
+    "expiresAtMs": 1796202003741,
+    "pinnedToConversation": true
+  },
+  {
+    "meta": {
+      "id": "aia_c5759808b6b14c2ebaa62d01a1f9e0cb",
+      "kind": "image",
+      "mimeType": "image/png",
+      "name": "naimi-test.png",
+      "sizeBytes": 68,
+      "url": "/api/v1/ai/attachments/aia_c5759808b6b14c2ebaa62d01a1f9e0cb",
+      "createdAt": "2026-11-25T09:01:40.089Z"
+    },
+    "ownerKey": "guest:97ed85421b7245849153e3985517aee8",
+    "filenameOnDisk": "aia_c5759808b6b14c2ebaa62d01a1f9e0cb.png",
+    "expiresAtMs": 1796202100447,
+    "pinnedToConversation": true
+  },
+  {
+    "meta": {
+      "id": "aia_3df39d95a2eb45d9b04ee33e5e53f9b9",
+      "kind": "image",
+      "mimeType": "image/png",
+      "name": "naimi-photo.png",
+      "sizeBytes": 68,
+      "url": "/api/v1/ai/attachments/aia_3df39d95a2eb45d9b04ee33e5e53f9b9",
+      "createdAt": "2026-11-25T09:20:56.201Z"
+    },
+    "ownerKey": "guest:94eb68cf267b414ab7efba1f45ccd8e0",
+    "filenameOnDisk": "aia_3df39d95a2eb45d9b04ee33e5e53f9b9.png",
+    "expiresAtMs": 1796203256636,
+    "pinnedToConversation": true
+  },
+  {
+    "meta": {
+      "id": "aia_8c8ec419749149939f83773606507995",
+      "kind": "pdf",
+      "mimeType": "application/pdf",
+      "name": "livestock-sheet.pdf",
+      "sizeBytes": 116,
+      "url": "/api/v1/ai/attachments/aia_8c8ec419749149939f83773606507995",
+      "createdAt": "2026-11-25T09:20:56.241Z"
+    },
+    "ownerKey": "guest:94eb68cf267b414ab7efba1f45ccd8e0",
+    "filenameOnDisk": "aia_8c8ec419749149939f83773606507995.pdf",
+    "expiresAtMs": 1796203256636,
+    "pinnedToConversation": true
+  },
+  {
+    "meta": {
+      "id": "aia_b812484ce9fc465a9c8c9bb78d04782f",
+      "kind": "image",
+      "mimeType": "image/png",
+      "name": "naimi-photo.png",
+      "sizeBytes": 68,
+      "url": "/api/v1/ai/attachments/aia_b812484ce9fc465a9c8c9bb78d04782f",
+      "createdAt": "2026-11-25T09:22:08.763Z"
+    },
+    "ownerKey": "guest:c98b751affc24a98838163fa422014e9",
+    "filenameOnDisk": "aia_b812484ce9fc465a9c8c9bb78d04782f.png",
+    "expiresAtMs": 1796203328953,
+    "pinnedToConversation": true
+  },
+  {
+    "meta": {
+      "id": "aia_6f37598181e641b989a85332c366356a",
+      "kind": "pdf",
+      "mimeType": "application/pdf",
+      "name": "livestock-sheet.pdf",
+      "sizeBytes": 116,
+      "url": "/api/v1/ai/attachments/aia_6f37598181e641b989a85332c366356a",
+      "createdAt": "2026-11-25T09:22:08.808Z"
+    },
+    "ownerKey": "guest:c98b751affc24a98838163fa422014e9",
+    "filenameOnDisk": "aia_6f37598181e641b989a85332c366356a.pdf",
+    "expiresAtMs": 1796203328953,
+    "pinnedToConversation": true
+  }
+]
